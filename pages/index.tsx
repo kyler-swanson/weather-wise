@@ -22,12 +22,14 @@ export default function Home() {
         <meta
           name='description'
           content='Get up-to-date weather information for your location with WeatherWise. Check the temperature, precipitation, wind, and more.'
-              />
+        />
         <meta name='viewport' content='width=device-width, initial-scale=1' />
       </Head>
       <Wrapper>
         <WeatherCard />
+        <ForecastCard />
       </Wrapper>
+      <UnitSelector />
     </WeatherProvider>
   );
 }
