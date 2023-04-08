@@ -1,8 +1,8 @@
-import { Coordinates } from './Location';
+import { Location } from './Location';
 
 interface GeocodingResponse {
   data?: {
-    coords: Coordinates;
+    location: Location;
   };
   error?: any;
 }

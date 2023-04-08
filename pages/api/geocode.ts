@@ -24,7 +24,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
   return res.status(200).json({
     data: {
-      coords: {
+      location: {
         name: data[0].name,
         state: data[0].state,
         country: data[0].country,
