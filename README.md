@@ -14,6 +14,7 @@ http://weather-wise-theta.vercel.app/
 - React (TypeScript)
 - OpenWeatherMap API
 - Geolocation API
+- Hosted on Vercel
 
 ## Getting Started
 
