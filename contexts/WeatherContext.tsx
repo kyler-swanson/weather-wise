@@ -7,11 +7,11 @@ import { createContext, ReactNode, useEffect, useState } from 'react';
 type WeatherContextType = {
   weather: WeatherData | undefined;
   units: Unit;
-  coordinates: Location | undefined;
+  location: Location | undefined;
   error: string | undefined;
 
   setUnits: (units: Unit) => void;
-  setCoordinates: (coordinates: Location) => void;
+  setLocation: (location: Location) => void;
 };
 
 export const WeatherContext = createContext<WeatherContextType | null>(null);
@@ -20,34 +20,31 @@ export const WeatherProvider = ({ children }: { children: ReactNode }) => {
   const [weather, setWeather] = useState<WeatherData | undefined>(undefined);
   const [units, setUnits] = useState<Unit>(process.env.NEXT_PUBLIC_DEFAULT_UNITS as Unit);
 
-  const [coordinates, setCoordinates] = useState<Location | undefined>(undefined);
+  const [location, setLocation] = useState<Location | undefined>(undefined);
 
   const [error, setError] = useState<string | undefined>(undefined);
 
   useEffect(() => {
-    if (!coordinates) {
-      (async () => {
-        const lat = parseFloat(process.env.NEXT_PUBLIC_DEFAULT_LAT as string);
-        const lon = parseFloat(process.env.NEXT_PUBLIC_DEFAULT_LON as string);
+    if (!location) {
+      const lat = parseFloat(process.env.NEXT_PUBLIC_DEFAULT_LAT as string);
+      const lon = parseFloat(process.env.NEXT_PUBLIC_DEFAULT_LON as string);
 
-        const defaultCoordinates: Location = await getReverseLocation(lat, lon);
-        setCoordinates(defaultCoordinates);
-      })();
+      getReverseLocation(lat, lon).then((location: Location) => setLocation(location));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [units]);
 
   // load weather data when location changes
   useEffect(() => {
-    if (coordinates) {
-      getWeatherData(coordinates, units)
+    if (location) {
+      getWeatherData(location, units)
         .then((data) => setWeather(data))
         .catch((err) => setError(err.message));
     }
-  }, [coordinates, units]);
+  }, [location, units]);
 
   return (
-    <WeatherContext.Provider value={{ weather, units, coordinates, error, setCoordinates, setUnits }}>
+    <WeatherContext.Provider value={{ weather, units, location, error, setLocation, setUnits }}>
       {children}
     </WeatherContext.Provider>
   );

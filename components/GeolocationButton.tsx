@@ -12,7 +12,7 @@ const StyledButton = styled(IoMdLocate)`
 export default function GeolocationButton() {
   const [error, setError] = useState<string | undefined>(undefined);
 
-  const { setCoordinates } = useContext(WeatherContext)!;
+  const { setLocation } = useContext(WeatherContext)!;
 
   useEffect(() => {
     if (error) {
@@ -27,8 +27,8 @@ export default function GeolocationButton() {
         const { latitude, longitude } = coords;
 
         try {
-          const coordinates: Location = await getReverseLocation(latitude, longitude);
-          setCoordinates(coordinates);
+          const location: Location = await getReverseLocation(latitude, longitude);
+          setLocation(location);
         } catch (err: any) {
           setError(err.message);
         }

@@ -9,7 +9,7 @@ export const getLocation = async (query: string): Promise<Location> => {
     throw new Error(json.error);
   }
 
-  return json.data.coords;
+  return json.data.location;
 };
 
 export const getReverseLocation = async (lat: number, lon: number): Promise<Location> => {
@@ -20,11 +20,11 @@ export const getReverseLocation = async (lat: number, lon: number): Promise<Loca
     throw new Error(json.error);
   }
 
-  return json.data.coords;
+  return json.data.location;
 };
 
-export const getWeatherData = async (coords: Location, units: string): Promise<WeatherData> => {
-  const res = await fetch(`/api/weather?lat=${coords.latitude}&lon=${coords.longitude}&units=${units}`);
+export const getWeatherData = async (location: Location, units: string): Promise<WeatherData> => {
+  const res = await fetch(`/api/weather?lat=${location.latitude}&lon=${location.longitude}&units=${units}`);
   const json = await res.json();
 
   if (!res.ok) {

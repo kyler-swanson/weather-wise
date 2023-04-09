@@ -31,7 +31,7 @@ const CityName = styled.h1`
 `;
 
 export default function WeatherCard() {
-  const { weather, coordinates, error } = useContext(WeatherContext)!;
+  const { weather, location, error } = useContext(WeatherContext)!;
 
   useEffect(() => {
     if (error) {
@@ -48,7 +48,7 @@ export default function WeatherCard() {
             <WeatherIcon code={weather.current.weather[0].icon} />
             <TemperatureDisplay temp={weather.current.temp} />
             <CityName style={{ marginLeft: '30px' }}>
-              {coordinates?.name}, {coordinates?.state}
+              {location?.name}, {location?.state}
             </CityName>
           </WeatherHeader>
         </>

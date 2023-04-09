@@ -40,13 +40,13 @@ export default function Search() {
   const [query, setQuery] = useState<string>('');
   const [error, setError] = useState<string | undefined>(undefined);
 
-  const { setCoordinates } = useContext(WeatherContext)!;
+  const { setLocation } = useContext(WeatherContext)!;
 
   const search = async () => {
     if (query.length > 0) {
       try {
-        const coords: Location = await getLocation(query);
-        setCoordinates(coords);
+        const location: Location = await getLocation(query);
+        setLocation(location);
         setError('');
       } catch (err: any) {
         setError(err.message);
