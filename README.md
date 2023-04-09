@@ -8,6 +8,12 @@ This repository contains the source code for the WeatherWise web application.
 
 http://weather-wise-theta.vercel.app/
 
+## Technologies
+
+- Next.js
+- React (TypeScript)
+- OpenWeatherMap API
+
 ## Getting Started
 
 To run WeatherWise locally, follow these steps:
