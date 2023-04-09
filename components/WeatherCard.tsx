@@ -10,7 +10,7 @@ import TemperatureDisplay from './TemperatureDisplay';
 import WeatherControl from './WeatherControl';
 import WeatherIcon from './WeatherIcon';
 
-const bebas = Quicksand({ weight: '400', subsets: ['latin'] });
+const quicksand = Quicksand({ weight: '400', subsets: ['latin'] });
 
 const Card = styled.div`
   background-color: #212121;
@@ -27,7 +27,7 @@ const WeatherHeader = styled.div`
 `;
 
 const CityName = styled.h1`
-  font-family: ${bebas.style.fontFamily};
+  font-family: ${quicksand.style.fontFamily};
   margin-left: 10px;
 `;
 
