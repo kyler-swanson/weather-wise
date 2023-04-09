@@ -5,10 +5,10 @@ import styled from 'styled-components';
 
 import { WeatherContext } from '@/contexts/WeatherContext';
 
+import Spinner from './Spinner';
 import TemperatureDisplay from './TemperatureDisplay';
 import WeatherControl from './WeatherControl';
 import WeatherIcon from './WeatherIcon';
-import Spinner from './Spinner';
 
 const bebas = Bebas_Neue({ weight: '400', subsets: ['latin'] });
 

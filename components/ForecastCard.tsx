@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 import { Comfortaa } from 'next/font/google';
 import WeatherIcon from './WeatherIcon';
-import Spinner from './Spinner';
 
 const comfortaa = Comfortaa({ weight: '500', subsets: ['latin'] });
 
