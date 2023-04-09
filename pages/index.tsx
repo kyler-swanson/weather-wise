@@ -12,6 +12,14 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
+  font-size: 1rem;
+
+  @media (max-width: 768px) {
+    justify-content: flex-start;
+    margin: 1rem;
+    font-size: 0.5rem;
+    height: auto;
+  }
 `;
 
 export default function Home() {

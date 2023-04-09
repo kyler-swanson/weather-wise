@@ -16,7 +16,7 @@ const Card = styled.div`
   background-color: #212121;
   border-radius: 2rem;
   color: #ffffff;
-  padding: 30px;
+  padding: 2em;
   box-shadow: 0px 2px 24px 11px rgba(48, 48, 48, 0.3);
 `;
 

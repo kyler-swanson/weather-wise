@@ -16,15 +16,21 @@ const Card = styled.div`
   background-color: #212121;
   border-radius: 2rem;
   color: #ffffff;
-  padding: 40px;
+  padding: 2em;
   box-shadow: 0px 2px 24px 11px rgba(48, 48, 48, 0.3);
+
+  @media (max-width: 768px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
 `;
 
 const DayCard = styled.div`
   margin: 0 5px;
   color: #ffffff;
   font-family: ${comfortaa.style.fontFamily};
-  padding: 0 20px;
+  padding: 0 1em;
   position: relative;
 
   &::after {
@@ -40,6 +46,12 @@ const DayCard = styled.div`
 
   &:last-child::after {
     display: none;
+  }
+
+  @media (max-width: 768px) {
+    &::after {
+      display: none;
+    }
   }
 `;
 

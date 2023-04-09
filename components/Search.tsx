@@ -20,7 +20,7 @@ const SearchInput = styled.input`
   outline: none;
   border: none;
   background: none;
-  font-size: 1.5em;
+  font-size: 2em;
   color: #ffffff;
 
   &::placeholder {

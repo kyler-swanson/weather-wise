@@ -7,12 +7,19 @@ const UnitWrapper = styled.div`
   position: absolute;
   top: 92.5%;
   left: 92.5%;
+
+  @media (max-width: 768px) {
+    display: block;
+    position: relative;
+    top: 0;
+    left: 0;
+  }
 `;
 
 const UnitButton = styled.button`
   background: none;
   border: none;
-  font-size: 1.5em;
+  font-size: 1em;
   font-weight: 600;
   color: #000000;
   cursor: pointer;
@@ -23,7 +30,8 @@ export default function UnitSelector() {
 
   return (
     <UnitWrapper>
-      <UnitButton onClick={() => setUnits(Unit.Metric)}>&deg;C</UnitButton>/<UnitButton onClick={() => setUnits(Unit.Imperial)}>&deg;F</UnitButton>
+      <UnitButton onClick={() => setUnits(Unit.Metric)}>&deg;C</UnitButton>/
+      <UnitButton onClick={() => setUnits(Unit.Imperial)}>&deg;F</UnitButton>
     </UnitWrapper>
   );
 }
