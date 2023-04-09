@@ -1,9 +1,12 @@
 import { WeatherContext } from '@/contexts/WeatherContext';
 import { Location } from '@/types/Location';
 import { getLocation } from '@/utils/api';
+import { Quicksand } from 'next/font/google';
 import { useContext, useEffect, useState } from 'react';
 import { MdSearch } from 'react-icons/md';
 import styled from 'styled-components';
+
+const quicksand = Quicksand({ weight: '400', subsets: ['latin'] });
 
 const SearchBox = styled.div`
   display: flex;
@@ -21,6 +24,7 @@ const SearchInput = styled.input`
   border: none;
   background: none;
   font-size: 2em;
+  font-family: ${quicksand.style.fontFamily};
   color: #ffffff;
 
   &::placeholder {

@@ -1,6 +1,6 @@
 import { useContext, useEffect } from 'react';
 
-import { Bebas_Neue } from 'next/font/google';
+import { Quicksand } from 'next/font/google';
 import styled from 'styled-components';
 
 import { WeatherContext } from '@/contexts/WeatherContext';
@@ -10,7 +10,7 @@ import TemperatureDisplay from './TemperatureDisplay';
 import WeatherControl from './WeatherControl';
 import WeatherIcon from './WeatherIcon';
 
-const bebas = Bebas_Neue({ weight: '400', subsets: ['latin'] });
+const bebas = Quicksand({ weight: '400', subsets: ['latin'] });
 
 const Card = styled.div`
   background-color: #212121;

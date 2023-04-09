@@ -15,7 +15,7 @@ const Card = styled.div`
   background-color: #212121;
   border-radius: 2rem;
   color: #ffffff;
-  padding: 2em;
+  padding: 3em 2em 2em 2em;
   box-shadow: 0px 2px 24px 11px rgba(48, 48, 48, 0.3);
 
   @media (max-width: 768px) {
@@ -66,7 +66,7 @@ const HighTempText = styled.div`
 `;
 
 const LowTempText = styled.div`
-  font-size: 1em;
+  font-size: 0.9em;
   text-align: center;
 `;
 
