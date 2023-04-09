@@ -13,6 +13,7 @@ http://weather-wise-theta.vercel.app/
 - Next.js
 - React (TypeScript)
 - OpenWeatherMap API
+- Geolocation API
 
 ## Getting Started
 
