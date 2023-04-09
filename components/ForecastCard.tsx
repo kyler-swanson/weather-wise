@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import { Comfortaa } from 'next/font/google';
 import WeatherIcon from './WeatherIcon';
+import Spinner from './Spinner';
 
 const comfortaa = Comfortaa({ weight: '500', subsets: ['latin'] });
 
@@ -59,30 +60,38 @@ const LowTempText = styled.div`
 `;
 
 export default function ForecastCard() {
-  const { weather, units } = useContext(WeatherContext)!;
+  const { weather, units, loading } = useContext(WeatherContext)!;
 
   return (
-    <Card>
-      {weather?.daily.map((day, i) => {
-        return (
-          <DayCard key={i}>
-            <DayText>
-              {i === 0
-                ? 'Today'
-                : new Date(day.dt * 1000).toLocaleDateString('en-US', { weekday: 'short', day: '2-digit' })}
-            </DayText>
-            <HighTempText>
-              {Math.round(day.temp.day)}
-              <span style={{ fontSize: '0.5em', verticalAlign: 'text-top' }}>{units == 'metric' ? '°C' : '°F'}</span>
-            </HighTempText>
-            <LowTempText>
-              {Math.round(day.temp.night)}
-              <span style={{ fontSize: '0.5em', verticalAlign: 'text-top' }}>{units == 'metric' ? '°C' : '°F'}</span>
-            </LowTempText>
-            <WeatherIcon code={day.weather[0].icon} />
-          </DayCard>
-        );
-      })}
-    </Card>
+    <>
+      {!loading && (
+        <Card>
+          {weather?.daily.map((day, i) => {
+            return (
+              <DayCard key={i}>
+                <DayText>
+                  {i === 0
+                    ? 'Today'
+                    : new Date(day.dt * 1000).toLocaleDateString('en-US', { weekday: 'short', day: '2-digit' })}
+                </DayText>
+                <HighTempText>
+                  {Math.round(day.temp.day)}
+                  <span style={{ fontSize: '0.5em', verticalAlign: 'text-top' }}>
+                    {units == 'metric' ? '°C' : '°F'}
+                  </span>
+                </HighTempText>
+                <LowTempText>
+                  {Math.round(day.temp.night)}
+                  <span style={{ fontSize: '0.5em', verticalAlign: 'text-top' }}>
+                    {units == 'metric' ? '°C' : '°F'}
+                  </span>
+                </LowTempText>
+                <WeatherIcon code={day.weather[0].icon} />
+              </DayCard>
+            );
+          })}
+        </Card>
+      )}
+    </>
   );
 }

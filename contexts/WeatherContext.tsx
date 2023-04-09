@@ -8,6 +8,7 @@ type WeatherContextType = {
   weather: WeatherData | undefined;
   units: Unit;
   location: Location | undefined;
+  loading: boolean;
   error: string | undefined;
 
   setUnits: (units: Unit) => void;
@@ -22,14 +23,20 @@ export const WeatherProvider = ({ children }: { children: ReactNode }) => {
 
   const [location, setLocation] = useState<Location | undefined>(undefined);
 
+  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | undefined>(undefined);
 
   useEffect(() => {
     if (!location) {
+      setLoading(true);
+
       const lat = parseFloat(process.env.NEXT_PUBLIC_DEFAULT_LAT as string);
       const lon = parseFloat(process.env.NEXT_PUBLIC_DEFAULT_LON as string);
 
-      getReverseLocation(lat, lon).then((location: Location) => setLocation(location));
+      getReverseLocation(lat, lon).then((location: Location) => {
+        setLocation(location);
+        setLoading(false);
+      });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [units]);
@@ -37,14 +44,22 @@ export const WeatherProvider = ({ children }: { children: ReactNode }) => {
   // load weather data when location changes
   useEffect(() => {
     if (location) {
+      setLoading(true);
+
       getWeatherData(location, units)
-        .then((data) => setWeather(data))
-        .catch((err) => setError(err.message));
+        .then((data) => {
+          setWeather(data);
+          setLoading(false);
+        })
+        .catch((err) => {
+          setError(err.message);
+          setLoading(false);
+        });
     }
   }, [location, units]);
 
   return (
-    <WeatherContext.Provider value={{ weather, units, location, error, setLocation, setUnits }}>
+    <WeatherContext.Provider value={{ weather, units, location, loading, error, setLocation, setUnits }}>
       {children}
     </WeatherContext.Provider>
   );

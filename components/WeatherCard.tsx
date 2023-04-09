@@ -8,6 +8,7 @@ import { WeatherContext } from '@/contexts/WeatherContext';
 import TemperatureDisplay from './TemperatureDisplay';
 import WeatherControl from './WeatherControl';
 import WeatherIcon from './WeatherIcon';
+import Spinner from './Spinner';
 
 const bebas = Bebas_Neue({ weight: '400', subsets: ['latin'] });
 
@@ -31,7 +32,7 @@ const CityName = styled.h1`
 `;
 
 export default function WeatherCard() {
-  const { weather, location, error } = useContext(WeatherContext)!;
+  const { weather, location, loading, error } = useContext(WeatherContext)!;
 
   useEffect(() => {
     if (error) {
@@ -42,16 +43,20 @@ export default function WeatherCard() {
   return (
     <Card>
       <WeatherControl />
-      {weather && (
-        <>
-          <WeatherHeader>
-            <WeatherIcon code={weather.current.weather[0].icon} />
-            <TemperatureDisplay temp={weather.current.temp} />
-            <CityName style={{ marginLeft: '30px' }}>
-              {location?.name}, {location?.state}
-            </CityName>
-          </WeatherHeader>
-        </>
+      {loading ? (
+        <Spinner />
+      ) : (
+        weather && (
+          <>
+            <WeatherHeader>
+              <WeatherIcon code={weather.current.weather[0].icon} />
+              <TemperatureDisplay temp={weather.current.temp} />
+              <CityName style={{ marginLeft: '30px' }}>
+                {location?.name}, {location?.state}
+              </CityName>
+            </WeatherHeader>
+          </>
+        )
       )}
     </Card>
   );
